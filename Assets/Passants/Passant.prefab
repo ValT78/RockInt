@@ -107,7 +107,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 2
@@ -130,6 +130,7 @@ MonoBehaviour:
   rb: {fileID: 2695410788005261709}
   speed: 1
   direction: {x: 0, y: 0, z: 1}
+  type: 1
 --- !u!54 &2695410788005261709
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -155,5 +156,5 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
