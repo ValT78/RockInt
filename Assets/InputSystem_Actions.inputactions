@@ -61,7 +61,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "QTE touch m=,",
+                    "name": "QTE touch m=;",
                     "type": "Button",
                     "id": "27783e5a-1dca-4821-a2ec-ba3779a39649",
                     "expectedControlType": "",
@@ -243,17 +243,6 @@
                 },
                 {
                     "name": "",
-                    "id": "05f6913d-c316-48b2-a6bb-e225f14c7960",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "QTE touch i",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "886e731e-7071-4ae4-95c0-e61739dad6fd",
                     "path": "<Touchscreen>/primaryTouch/tap",
                     "interactions": "",
@@ -303,17 +292,6 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "QTE touch o",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a5305d69-5543-4ed2-8673-997b1f194dd1",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
                     "action": "QTE touch o",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -375,17 +353,6 @@
                 },
                 {
                     "name": "",
-                    "id": "08989028-a986-46c1-bc9f-0ba62384e775",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "QTE touch p",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "122c1e46-552a-442a-8a97-e092d703e093",
                     "path": "<Touchscreen>/primaryTouch/tap",
                     "interactions": "",
@@ -435,17 +402,6 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "QTE touch k",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "498fc0d3-9feb-478d-af38-06a264a3a334",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
                     "action": "QTE touch k",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -507,17 +463,6 @@
                 },
                 {
                     "name": "",
-                    "id": "e4741d60-8a59-4a0f-b2e7-199f1669de0a",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "QTE touch l",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "83ecfc0d-6c07-44fb-8d1b-3d7c08d653d0",
                     "path": "<Touchscreen>/primaryTouch/tap",
                     "interactions": "",
@@ -567,18 +512,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "QTE touch m=,",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "4d4e8c2e-015f-4588-b9fd-00ac7419a729",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "QTE touch m=,",
+                    "action": "QTE touch m=;",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -589,7 +523,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Touch",
-                    "action": "QTE touch m=,",
+                    "action": "QTE touch m=;",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -600,7 +534,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Joystick",
-                    "action": "QTE touch m=,",
+                    "action": "QTE touch m=;",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -611,7 +545,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "XR",
-                    "action": "QTE touch m=,",
+                    "action": "QTE touch m=;",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -622,7 +556,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "QTE touch m=,",
+                    "action": "QTE touch m=;",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

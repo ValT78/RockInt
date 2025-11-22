@@ -89,4 +89,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DeplacementQTE
   speed: 40
+  rectTransform: {fileID: 1373004179468036350}
   QTETrigger: {fileID: 6420760776808562578, guid: 052faaac586de48259a63d0c4782560b, type: 3}
