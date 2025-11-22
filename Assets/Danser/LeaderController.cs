@@ -130,7 +130,7 @@ public class LeaderController : MonoBehaviour
             Vector3 landingPoint = transform.position + dir * targetDistance;
 
             // tell follower to eject towards landingPoint
-            if (follower != null && follower.CurrentState == FollowerController.State.Solidaire)
+            if (follower.CurrentState == FollowerController.State.Solidaire)
             {
                 // pass the landing point and the chosen distance (used to compute force)
                 follower.StartEject(landingPoint, targetDistance);
