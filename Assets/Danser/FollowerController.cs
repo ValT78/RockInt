@@ -109,7 +109,7 @@ public class FollowerController : Player
         rb.isKinematic = true;
         rb.linearVelocity = Vector3.zero;
         currentReturnSpeed = baseReturnSpeed;
-        if (animator != null) animator.SetTrigger("Attach");
+        if (animator != null) SetAnimationBools(true, false, false);
 
         // --- ALIGN ORBIT TO CURRENT POSITION TO AVOID TELEPORT ---
         if (leader != null)
@@ -165,7 +165,7 @@ public class FollowerController : Player
         rb.linearVelocity = Vector3.zero;
         rb.AddForce(dir * impulse, ForceMode.Impulse);
 
-        if (animator != null) animator.SetTrigger("Eject");
+        if (animator != null) SetAnimationBools(false, true, false);
         HideLandingIndicator();
     }
 
@@ -176,7 +176,7 @@ public class FollowerController : Player
         CurrentState = State.Detached;
         rb.isKinematic = false;
         currentReturnSpeed = baseReturnSpeed;
-        if (animator != null) animator.SetTrigger("Return");
+        if (animator != null) SetAnimationBools(false, false, true);
     }
 
     // --- Updates per state ---
@@ -322,5 +322,14 @@ public class FollowerController : Player
             Gizmos.color = Color.magenta;
             Gizmos.DrawWireSphere(leader.position, orbitRadius);
         }
+    }
+
+    void SetAnimationBools(bool solidaire, bool ejected, bool detached)
+    {
+        if (animator == null) return;
+
+        animator.SetBool("IsSolidaire", solidaire);
+        animator.SetBool("IsEjected", ejected);
+        animator.SetBool("IsDetached", detached);
     }
 }
