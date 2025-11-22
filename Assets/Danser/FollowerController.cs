@@ -184,20 +184,26 @@ public class FollowerController : MonoBehaviour
     // --- Updates per state ---
     void UpdateSolidaire()
     {
-        // orbit angle depends on leader velocity for fun
+        if (leader == null) return;
+
+        // récupère la vélocité du leader si présente
         Vector3 leaderVel = Vector3.zero;
         Rigidbody leaderRb = leader.GetComponent<Rigidbody>();
         if (leaderRb != null) leaderVel = leaderRb.linearVelocity;
 
         float speedFactor = 1f + leaderVel.magnitude * 0.2f;
-        float ang = orbitAngularSpeed * Time.fixedDeltaTime * speedFactor;
-        // simple orbital position around leader on XZ plane
+
+        // calcule l'angle courant de l'orbite (dépend du temps + offset déjà aligné dans EnterSolidaire)
         float angle = Time.time * orbitAngularSpeed + orbitAngleOffset.y;
+
+        // point désiré sur la circonférence XZ
         Vector3 desired = leader.position + new Vector3(Mathf.Cos(angle), 0f, Mathf.Sin(angle)) * orbitRadius;
-        // smooth follow to desired (keeps nice springy movement)
+
+        // smooth follow to desired (garde effet springy)
         Vector3 newPos = Vector3.SmoothDamp(transform.position, desired, ref velSmooth, solidaireSmooth, 100f, Time.fixedDeltaTime);
         transform.position = newPos;
-        // optionally face leader
+
+        // face leader doucement
         Vector3 look = leader.position - transform.position;
         if (look.sqrMagnitude > 0.001f)
         {
