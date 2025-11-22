@@ -157,13 +157,13 @@ MonoBehaviour:
   leader: {fileID: 0}
   rb: {fileID: 2236106350127841025}
   animator: {fileID: 0}
-  orbitRadius: 1.2
-  orbitAngularSpeed: 2.2
+  orbitRadius: 1
+  orbitAngularSpeed: 1.1
   solidaireSmooth: 0.08
   ejectTime: 0.6
-  baseReturnSpeed: 4
-  returnAccel: 10
-  maxReturnSpeed: 15
+  baseReturnSpeed: 6
+  returnAccel: 20
+  maxReturnSpeed: 30
   attachDistance: 1
   ejectForcePerUnitDistance: 1.6
   minEjectImpulse: 3
