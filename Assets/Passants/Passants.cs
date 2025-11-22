@@ -28,12 +28,10 @@ public class Passants : MonoBehaviour
         direction.y = 0f;
     
         float alea=Random.Range(0f,1f);
-        print(alea);
         float cumul = 0f;
         for(int i = 0; i < probaType.Length; i++)
         {
             cumul+=probaType[i];
-            print(cumul);
             if (alea <= cumul)
             {
                 type = i+1;
@@ -66,9 +64,8 @@ public class Passants : MonoBehaviour
         }
         if(transform.position.x < GameManager.minX || transform.position.x > GameManager.maxX || transform.position.z > GameManager.maxZ|| transform.position.z < GameManager.minZ)
         {
-            print("out");
             GameManager.Instance.RemovePassant(this);
-            Destroy(gameObject,2f);
+            Destroy(gameObject,0f);
         }
     }
 
