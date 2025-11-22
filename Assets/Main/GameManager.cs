@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections.Generic;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -8,11 +10,13 @@ public class GameManager : MonoBehaviour
 
     public int Health { get; set;} = 5;
 
+    public List<Passants> passants;
+
     [Header("Dancefloor Size")]
     public static float minX = -10f;
     public static float maxX = 10f;
-    public static float minZ = -10f;
-    public static float maxZ = 10f;
+    public static float minZ = -8f;
+    public static float maxZ = 8f;
 
     private void Awake()
     {
@@ -47,5 +51,15 @@ public class GameManager : MonoBehaviour
             print("Game Over");
             ResetGame();
         }
+    }
+
+    public void AddPassant(Passants passant)
+    {
+        passants.Add(passant);
+    }
+
+    public void RemovePassant(Passants passant)
+    {
+        passants.Remove(passant);
     }
 }

@@ -145,8 +145,14 @@ public class FollowerController : Player
     {
         if (CurrentState != State.Solidaire) return;
 
-        // compute direction and impulse (optional)
-        Vector3 dir = (landingPoint - transform.position);
+        // Clamp landingPoint as a safety (in case leader didn't clamp for any reason)
+        float landingMargin = 0.25f + orbitRadius;
+        landingPoint = ClampPositionToDancefloor(landingPoint, landingMargin);
+
+        landingTarget = landingPoint;
+
+        // compute direction and impulse...
+        Vector3 dir = (landingTarget - transform.position);
         dir.y = 0f;
         float distance = dir.magnitude;
         if (distance < 0.001f) dir = transform.forward;
@@ -154,23 +160,15 @@ public class FollowerController : Player
 
         float impulse = Mathf.Clamp(targetDistance * ejectForcePerUnitDistance, minEjectImpulse, maxEjectImpulse);
 
-        // Set landing target (preserve the exact world point)
-        landingTarget = landingPoint;
-
-        // Switch to Ejected state (physics-driven movement toward landingTarget)
         CurrentState = State.Ejected;
         rb.isKinematic = false;
         rb.linearVelocity = Vector3.zero;
-
-        // Optionally keep a short impulse to make the initial throw feel nicer.
-        // You can comment out the AddForce line if you prefer pure interpolation towards landingTarget.
         rb.AddForce(dir * impulse, ForceMode.Impulse);
 
         if (animator != null) animator.SetTrigger("Eject");
-
-        // Ensure indicator hidden
         HideLandingIndicator();
     }
+
 
     void EnterDetached()
     {
@@ -213,41 +211,35 @@ public class FollowerController : Player
 
     void UpdateEjected()
     {
-        // Move towards the landingTarget until close enough, then switch to Detached.
-        // We prioritize physics movement: set horizontal velocity toward the target while preserving y velocity (gravity).
-        Vector3 toTarget = landingTarget - transform.position;
+        // Ensure landingTarget still inside dancefloor (defensive)
+        float landingMargin = 0.01f + orbitRadius * 0.5f;
+        Vector3 clampedTarget = ClampPositionToDancefloor(landingTarget, landingMargin);
+
+        Vector3 toTarget = clampedTarget - transform.position;
         toTarget.y = 0f;
         float dist = toTarget.magnitude;
 
-        // If we're very close (or overshot), consider landed.
         if (dist <= landingReachThreshold)
         {
-            // snap to landing target's XZ plane to avoid tiny drifting, keep current Y
-            /*Vector3 snapPos = new Vector3(landingTarget.x, transform.position.y, landingTarget.z);
-            transform.position = snapPos;*/
+            // snap to landing target's XZ (but keep Y to current)
+            Vector3 snapPos = new Vector3(clampedTarget.x, transform.position.y, clampedTarget.z);
+            transform.position = snapPos;
 
-            // Transition to Detached so player can now control return
             EnterDetached();
             return;
         }
 
-        // Compute desired horizontal velocity toward target. We scale speed by dist to avoid abrupt stops.
-        // You can tweak the factor below for "gliding" vs "fast travel".
-        float travelSpeed = Mathf.Clamp(dist * 6f, 2f, maxReturnSpeed * 1.2f); // tuned for initial travel feeling
+        float travelSpeed = Mathf.Clamp(dist * 6f, 2f, maxReturnSpeed * 1.2f);
         Vector3 desiredVel = toTarget.normalized * travelSpeed;
-
-        // Apply to rigidbody while preserving vertical (gravity) velocity
         rb.linearVelocity = new Vector3(desiredVel.x, rb.linearVelocity.y, desiredVel.z);
 
-        // Optional: orient smoothly toward movement direction
         if (desiredVel.sqrMagnitude > 0.001f)
         {
             Quaternion targetRot = Quaternion.LookRotation(new Vector3(desiredVel.x, 0f, desiredVel.z));
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, 8f * Time.fixedDeltaTime);
         }
-
-        // While in Ejected state, ignore attach checks (handled only in Detached)
     }
+
 
     void UpdateDetached()
     {
