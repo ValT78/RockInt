@@ -294,10 +294,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -341,7 +341,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4799655192151332131}
-  m_Father: {fileID: 1718954773}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -576,60 +576,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1718954771
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1718954773}
-  - component: {fileID: 1718954772}
-  m_Layer: 0
-  m_Name: Touches
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1718954772
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1718954771}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: debf3e34510d07149bd8647829dc0b6a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::QTEManager
-  touchsPrefab:
-  - {fileID: 1554604403318274075, guid: a0a292f0bba5e9446b03f2bd59226b4f, type: 3}
-  - {fileID: 373915021956474063, guid: 47a878ead8e23924fac8c85eb697a8c4, type: 3}
-  - {fileID: 2581892426062847838, guid: 7728b05ec54b2e54092829b066f18b70, type: 3}
-  - {fileID: 3714163626346280821, guid: b75ac57fe59295e43b9133f2d91c320f, type: 3}
-  - {fileID: 422140345266914235, guid: 93724e7e3e9cd794690c8def1788d07a, type: 3}
-  - {fileID: 7763612107898937262, guid: 28b8d0cada67a0249b75ba8483a9bfd9, type: 3}
-  platformLenghtY: 100
-  numSpawning: 10
---- !u!4 &1718954773
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1718954771}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 376750339}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4799655192151332130
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -739,5 +685,5 @@ SceneRoots:
   - {fileID: 646295974}
   - {fileID: 247813473}
   - {fileID: 813074324}
-  - {fileID: 1718954773}
+  - {fileID: 376750339}
   - {fileID: 515408082}
