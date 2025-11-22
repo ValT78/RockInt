@@ -763,6 +763,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2025054558}
     m_Modifications:
+    - target: {fileID: 2422536085343421054, guid: a73eb3944161be94da1668047e0aab75, type: 3}
+      propertyPath: touchsPrefab.Array.size
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2621142926658619896, guid: a73eb3944161be94da1668047e0aab75, type: 3}
       propertyPath: m_Name
       value: QTE_holder
