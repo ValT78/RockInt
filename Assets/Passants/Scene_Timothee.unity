@@ -289,6 +289,7 @@ MonoBehaviour:
   spawnPoints:
   - {x: 0, y: 0, z: 0}
   - {x: 30, y: 0, z: 0}
+  - {x: 50, y: 10, z: 0}
   nbPassantsDepart: 3
 --- !u!4 &1108433273
 Transform:
