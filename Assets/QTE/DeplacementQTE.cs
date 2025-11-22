@@ -30,7 +30,6 @@ public class DeplacementQTE : MonoBehaviour
         if (Mathf.Abs(rectTransform.localPosition.y)<=50 && ReadStopHeld())
         {
             GameManager.Instance.AddScore(1);
-            Destroy(gameObject);
             /* A FAIRE DEMAIN !!!
             SoundManager.Instance.PlaySFX(footStepClip, volume: 0.9f, pitch: Random.Range(0.9f, 1.1f));*/
         }
