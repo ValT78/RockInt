@@ -3,9 +3,10 @@ using UnityEngine;
 public class Passants : MonoBehaviour
 {
     [SerializeField] private Rigidbody rb;
-    [SerializeField] private float speed;
+    [SerializeField] private float speed = 1;
     [SerializeField] public Vector3 direction;
     [SerializeField] public int type = 1;
+    [SerializeField] int damage = 1;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -27,6 +28,18 @@ public class Passants : MonoBehaviour
         return direction * speed;
         }
         return direction * speed;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        
+        Player player = other.GetComponent<Player>();
+
+        if (player != null)
+        {
+            print("touché");
+            GameManager.Instance.TakeDamage(damage);
+        }
     }
 
 }

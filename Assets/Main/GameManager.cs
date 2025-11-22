@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
 
     public float Score { get; set; }
 
+    public int Health { get; set;} = 5;
+
     [Header("Dancefloor Size")]
     public static float minX = -5f;
     public static float maxX = 5f;
@@ -35,5 +37,15 @@ public class GameManager : MonoBehaviour
     {
         Score += points;
         ScoreManager.Instance.UpdateScore((int)Score);
+    }
+
+    public void TakeDamage(int damage)
+    {
+        Health -= damage;
+        if (Health <= 0)
+        {
+            print("Game Over");
+            ResetGame();
+        }
     }
 }
