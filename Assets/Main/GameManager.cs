@@ -9,10 +9,10 @@ public class GameManager : MonoBehaviour
     public int Health { get; set;} = 5;
 
     [Header("Dancefloor Size")]
-    public static float minX = -5f;
-    public static float maxX = 5f;
-    public static float minZ = -5f;
-    public static float maxZ = 5f;
+    public static float minX = -10f;
+    public static float maxX = 10f;
+    public static float minZ = -10f;
+    public static float maxZ = 10f;
 
     private void Awake()
     {
@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
     public void AddScore(float points)
     {
         Score += points;
-        ScoreManager.Instance.UpdateScore((int)Score);
+        if (ScoreManager.Instance != null) ScoreManager.Instance.UpdateScore((int)Score);
     }
 
     public void TakeDamage(int damage)
