@@ -33,12 +33,13 @@ public class SpotlightController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if ((other.CompareTag("Player1") || other.CompareTag("Player2")) && !isOscillating)
+        // Vérifie si le collider a un composant PlayerScore
+        PlayerScore player = other.GetComponent<PlayerScore>();
+        if (player != null && !isOscillating)
         {
             StartCoroutine(OscillateThenRespawn());
         }
     }
-
     IEnumerator OscillateThenRespawn()
     {
         isOscillating = true;
