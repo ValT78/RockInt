@@ -127,9 +127,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7483ba5ee4f69ec4194517289f2fd3d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Passants
-  rb: {fileID: 0}
-  speed: 0
-  direction: {x: 0, y: 0, z: 0}
+  rb: {fileID: 2695410788005261709}
+  speed: 1
+  direction: {x: 0, y: 0, z: 1}
 --- !u!54 &2695410788005261709
 Rigidbody:
   m_ObjectHideFlags: 0

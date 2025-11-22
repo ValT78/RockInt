@@ -1,9 +1,11 @@
 using UnityEngine;
 
+
 public class PassantsSpawner : MonoBehaviour
 {
     [SerializeField] GameObject passant;
     [SerializeField] Vector3[] spawnPoints;
+    [SerializeField] Vector3[] directions;
     [SerializeField] int nbPassantsDepart;
     int nbPassants = 0;
     int currentSpawnIndex = 0;
@@ -20,6 +22,8 @@ public class PassantsSpawner : MonoBehaviour
         {
             GameObject curentPassant = Instantiate(passant, spawnPoints[currentSpawnIndex], Quaternion.identity);
             curentPassant.name = "Passant"+nbPassants;
+            Passants controller = passant.GetComponent<Passants>(); 
+            controller.direction = directions[currentSpawnIndex % directions.Length];
             currentSpawnIndex = (currentSpawnIndex + 1) % spawnPoints.Length;
             nbPassants++;
         }
