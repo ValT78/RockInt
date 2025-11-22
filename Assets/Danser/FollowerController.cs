@@ -23,6 +23,10 @@ public class FollowerController : MonoBehaviour
     public float maxReturnSpeed = 8f;
     public float attachDistance;
 
+    [Header("Indicator (assign prefab)")]
+    public GameObject landingIndicatorPrefab;
+    GameObject landingIndicatorInstance;
+
     [Header("Input")]
     public InputActionReference accelerateAction; // A
     public InputActionReference stopAction; // E (while detached to stop)
@@ -202,6 +206,23 @@ public class FollowerController : MonoBehaviour
             Quaternion targetRot = Quaternion.LookRotation(dir);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, 8f * Time.fixedDeltaTime);
         }
+    }
+
+    public void ShowLandingIndicator(Vector3 worldPos)
+    {
+        if (landingIndicatorPrefab == null) return;
+        if (landingIndicatorInstance == null)
+        {
+            landingIndicatorInstance = Instantiate(landingIndicatorPrefab, worldPos, Quaternion.Euler(90f, 0f, 0f));
+        }
+        landingIndicatorInstance.SetActive(true);
+        landingIndicatorInstance.transform.position = worldPos + Vector3.up * 0.02f; // slight lift to avoid z-fight
+    }
+
+    public void HideLandingIndicator()
+    {
+        if (landingIndicatorInstance != null)
+            landingIndicatorInstance.SetActive(false);
     }
 
     // Optional debug gizmos

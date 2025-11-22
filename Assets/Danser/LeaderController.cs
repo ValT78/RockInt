@@ -12,15 +12,24 @@ public class LeaderController : MonoBehaviour
     public float moveSpeed = 3f;
     public float detachedSpeedMultiplier = 1.6f; // when follower is ejecté/detached
 
-    [Header("Ejection")]
-    public float ejectForce = 8f;
-    public float ejectCooldown = 0.25f;
+    [Header("Ejection / Charge")]
+    public float chargeMaxTime = 1.2f; // temps max de charge (s)
+    public float minEjectDistance = 1.5f; // distance minimale de l'éjection
+    public float maxEjectDistance = 6f;   // distance maximale de l'éjection
+    public AnimationCurve chargeToDistance = AnimationCurve.Linear(0f, 0f, 1f, 1f); // map normalized charge -> 0..1 distance
+
+    [Header("Indicator")]
+    public GameObject landingIndicatorPrefab; // assign a small sprite/quad to show landing spot
+    GameObject landingIndicatorInstance;
 
     [Header("Input (Input System)")]
     public InputActionReference moveAction; // Vector2
     public InputActionReference eAction; // Button
 
-    float lastEjectTime = -10f;
+    // runtime
+    float chargeTimer = 0f;
+    bool isCharging = false;
+    bool prevEHeld = false;
 
     void Reset()
     {
@@ -45,11 +54,18 @@ public class LeaderController : MonoBehaviour
         return Vector2.zero;
     }
 
-    bool ReadEPressed()
+    bool ReadEHeld()
     {
         if (eAction != null && eAction.action != null)
-            return eAction.action.triggered;
-        return false;
+        {
+            // For button actions returning float: >0 is held
+            float val = 0f;
+            try { val = eAction.action.ReadValue<float>(); } catch { /* ignore */ }
+            if (val > 0.1f) return true;
+        }
+
+        if (Keyboard.current != null) return Keyboard.current.eKey.isPressed;
+        return Input.GetKey(KeyCode.E);
     }
 
     void FixedUpdate()
@@ -65,17 +81,71 @@ public class LeaderController : MonoBehaviour
         Vector3 targetPos = rb.position + movement * speed * Time.fixedDeltaTime;
         rb.MovePosition(targetPos);
 
-        // Ejection trigger (context-sensitive handled inside follower)
-        if (ReadEPressed() && follower.CurrentState == FollowerController.State.Solidaire && Time.time - lastEjectTime > ejectCooldown)
+        // ---- Charge & Eject logic ----
+        bool eHeld = ReadEHeld();
+        bool ePressedThisFrame = !prevEHeld && eHeld;
+        bool eReleasedThisFrame = prevEHeld && !eHeld;
+        prevEHeld = eHeld;
+
+        if (eHeld && follower != null && follower.CurrentState == FollowerController.State.Solidaire)
         {
-            lastEjectTime = Time.time;
-            if (follower != null)
+            // start or continue charging
+            if (!isCharging)
             {
-                // Tell follower to eject: choose direction from leader to follower
-                Vector3 dir = (follower.transform.position - transform.position).normalized;
-                if (dir == Vector3.zero) dir = transform.forward; // fallback
-                follower.StartEject(dir, ejectForce);
+                isCharging = true;
+                chargeTimer = 0f;
             }
+            chargeTimer += Time.fixedDeltaTime;
+            chargeTimer = Mathf.Min(chargeTimer, chargeMaxTime);
+
+            // compute normalized charge 0..1
+            float t = Mathf.Clamp01(chargeTimer / chargeMaxTime);
+            float lerp = chargeToDistance.Evaluate(t); // 0..1 curve
+
+            // compute landing point: direction from leader toward follower (current orbit direction)
+            Vector3 dir = (follower.transform.position - transform.position);
+            dir.y = 0f;
+            if (dir.sqrMagnitude < 0.001f) dir = transform.forward;
+            dir = dir.normalized;
+
+            float targetDistance = Mathf.Lerp(minEjectDistance, maxEjectDistance, lerp);
+            Vector3 landingPoint = transform.position + dir * targetDistance;
+
+            // show landing indicator (follower handles indicator visuals)
+            if (follower != null) follower.ShowLandingIndicator(landingPoint);
+        }
+        else if (!eHeld && isCharging)
+        {
+            // release: perform the eject (only when release and were charging)
+            isCharging = false;
+
+            // compute final charge value and landing point one last time
+            float t = Mathf.Clamp01(chargeTimer / chargeMaxTime);
+            float lerp = chargeToDistance.Evaluate(t);
+            Vector3 dir = (follower.transform.position - transform.position);
+            dir.y = 0f;
+            if (dir.sqrMagnitude < 0.001f) dir = transform.forward;
+            dir = dir.normalized;
+            float targetDistance = Mathf.Lerp(minEjectDistance, maxEjectDistance, lerp);
+            Vector3 landingPoint = transform.position + dir * targetDistance;
+
+            // tell follower to eject towards landingPoint
+            if (follower != null && follower.CurrentState == FollowerController.State.Solidaire)
+            {
+                // pass the landing point and the chosen distance (used to compute force)
+                follower.StartEject(landingPoint, targetDistance);
+            }
+
+            // hide indicator
+            if (follower != null) follower.HideLandingIndicator();
+
+            chargeTimer = 0f;
+        }
+        else
+        {
+            // not charging: ensure indicator hidden
+            if (!isCharging && follower != null)
+                follower.HideLandingIndicator();
         }
     }
 
