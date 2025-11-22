@@ -1309,7 +1309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GearButtonHover
   gearIcon: {fileID: 1551516643}
-  btnSettings: {fileID: 1551516642}
+  btnClose: {fileID: 719940601}
   hoverScale: 1.3
   hoverColor: {r: 0.4156863, g: 0.20392159, b: 0.38431376, a: 1}
   rotationSpeed: 90
