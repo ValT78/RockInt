@@ -9,13 +9,13 @@ public class LeaderController : Player
     public FollowerController follower;
 
     [Header("Movement")]
-    public float moveSpeed;
-    public float detachedSpeedMultiplier; // when follower is ejecté/detached
+    public float moveSpeed = 3f;
+    public float detachedSpeedMultiplier = 1.6f; // when follower is ejecté/detached
 
     [Header("Ejection / Charge")]
-    public float chargeMaxTime; // temps max de charge (s)
-    public float minEjectDistance; // distance minimale de l'éjection
-    public float maxEjectDistance;   // distance maximale de l'éjection
+    public float chargeMaxTime = 1.2f; // temps max de charge (s)
+    public float minEjectDistance = 1.5f; // distance minimale de l'éjection
+    public float maxEjectDistance = 6f;   // distance maximale de l'éjection
     public AnimationCurve chargeToDistance = AnimationCurve.Linear(0f, 0f, 1f, 1f); // map normalized charge -> 0..1 distance
 
     [Header("Indicator")]
@@ -27,7 +27,7 @@ public class LeaderController : Player
     public InputActionReference eAction; // Button
 
     // runtime
-    float chargeTimer;
+    float chargeTimer = 0f;
     bool isCharging = false;
     bool prevEHeld = false;
 
@@ -79,11 +79,10 @@ public class LeaderController : Player
             speed *= detachedSpeedMultiplier;
 
         Vector3 targetPos = rb.position + movement * speed * Time.fixedDeltaTime;
-
+       
         // --- Clamp leader pos to dancefloor (optionnel margin pour ne pas coller au bord) ---
         float leaderMargin = 0.2f; // tweak : marge pour que le leader n'aille pas tout au bord
         targetPos = ClampPositionToDancefloor(targetPos, leaderMargin);
-
         rb.MovePosition(targetPos);
 
         // ---- Charge & Eject logic ----
@@ -94,61 +93,68 @@ public class LeaderController : Player
 
         if (eHeld && follower != null && follower.CurrentState == FollowerController.State.Solidaire)
         {
-            // charging logic...
-            // compute landingPoint
+            // start or continue charging
+            if (!isCharging)
+            {
+                isCharging = true;
+                chargeTimer = 0f;
+            }
+            chargeTimer += Time.fixedDeltaTime;
+            chargeTimer = Mathf.Min(chargeTimer, chargeMaxTime);
+
+            // compute normalized charge 0..1
+            float t = Mathf.Clamp01(chargeTimer / chargeMaxTime);
+            float lerp = chargeToDistance.Evaluate(t); // 0..1 curve
+
+            // compute landing point: direction from leader toward follower (current orbit direction)
             Vector3 dir = (follower.transform.position - transform.position);
             dir.y = 0f;
             if (dir.sqrMagnitude < 0.001f) dir = transform.forward;
-            dir = dir.normalized; 
-            float t = Mathf.Clamp01(chargeTimer / chargeMaxTime);
-            float targetDistance = Mathf.Lerp(minEjectDistance, maxEjectDistance, chargeToDistance.Evaluate(t));
+            dir = dir.normalized;
+
+            float targetDistance = Mathf.Lerp(minEjectDistance, maxEjectDistance, lerp);
             Vector3 landingPoint = transform.position + dir * targetDistance;
 
-            // IMPORTANT: clamp landingPoint to dancefloor minus a margin so follower can land fully inside
-            float landingMargin = 0.25f + follower.orbitRadius; // safe margin (évite d'atterrir collé au bord)
-            print(landingPoint);
-            landingPoint = ClampPositionToDancefloor(landingPoint, landingMargin);
-            print(landingPoint);
-
+            // show landing indicator (follower handles indicator visuals)
             if (follower != null) follower.ShowLandingIndicator(landingPoint);
         }
         else if (!eHeld && isCharging)
         {
-            // release: compute landingPoint again (same as above)
+            // release: perform the eject (only when release and were charging)
+            isCharging = false;
+
+            // compute final charge value and landing point one last time
+            float t = Mathf.Clamp01(chargeTimer / chargeMaxTime);
+            float lerp = chargeToDistance.Evaluate(t);
             Vector3 dir = (follower.transform.position - transform.position);
             dir.y = 0f;
             if (dir.sqrMagnitude < 0.001f) dir = transform.forward;
-            dir = dir.normalized; 
-            float t = Mathf.Clamp01(chargeTimer / chargeMaxTime);
-            float targetDistance = Mathf.Lerp(minEjectDistance, maxEjectDistance, chargeToDistance.Evaluate(t));
+            dir = dir.normalized;
+            float targetDistance = Mathf.Lerp(minEjectDistance, maxEjectDistance, lerp);
             Vector3 landingPoint = transform.position + dir * targetDistance;
 
-            // clamp landingPoint to bounds
-            float landingMargin = 0.25f + follower.orbitRadius;
-            print(landingPoint);
-            landingPoint = ClampPositionToDancefloor(landingPoint, landingMargin);
-            print(landingPoint);
-
-            if (follower != null && follower.CurrentState == FollowerController.State.Solidaire)
+            // tell follower to eject towards landingPoint
+            if (follower.CurrentState == FollowerController.State.Solidaire)
             {
+                // pass the landing point and the chosen distance (used to compute force)
                 follower.StartEject(landingPoint, targetDistance);
             }
 
+            // hide indicator
             if (follower != null) follower.HideLandingIndicator();
 
             chargeTimer = 0f;
         }
         else
         {
+            // not charging: ensure indicator hidden
             if (!isCharging && follower != null)
                 follower.HideLandingIndicator();
         }
     }
 
-
-
-// debug draw leader direction
-void OnDrawGizmosSelected()
+    // debug draw leader direction
+    void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireSphere(transform.position, 0.25f);

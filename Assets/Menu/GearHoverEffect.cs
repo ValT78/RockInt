@@ -5,9 +5,9 @@ using UnityEngine.EventSystems;
 public class GearButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public Image gearIcon;
+    public Button btnClose;
     public float hoverScale = 1.3f;
     public Color hoverColor = Color.yellow;
-    public float rotationSpeed = 90f; // Bonus : rotation au survol !
 
     private Vector3 originalScale;
     private Color originalColor;
@@ -15,16 +15,30 @@ public class GearButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     void Start()
     {
+        InitializeButton();
+    }
+
+    void InitializeButton()
+    {
         originalScale = gearIcon.transform.localScale;
         originalColor = gearIcon.color;
     }
 
     void Update()
     {
-        // Rotation continue pendant le survol (optionnel)
-        if (isHovering)
+        if (btnClose != null)
         {
-            gearIcon.transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
+            ResetButton();
+        }
+    }
+
+    public void ResetButton()
+    {
+        isHovering = false;
+        if (gearIcon != null)
+        {
+            gearIcon.transform.localScale = originalScale;
+            gearIcon.color = originalColor;
         }
     }
 
@@ -37,10 +51,6 @@ public class GearButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        isHovering = false;
-        gearIcon.transform.localScale = originalScale;
-        gearIcon.color = originalColor;
-        // Réinitialiser la rotation
-        gearIcon.transform.rotation = Quaternion.identity;
+        ResetButton();
     }
 }
