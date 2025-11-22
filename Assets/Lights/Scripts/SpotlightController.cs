@@ -6,8 +6,8 @@ public class SpotlightController : MonoBehaviour
     [Header("Spotlight Visual")]
     public Light spotlightVisual;   // le Quad ou Sprite au sol
     public float oscillationAmplitude = 160f;
-    public float oscillationSpeed = 4f;
-    public float detectionTime = 5f;    // durée d'oscillation
+    public float oscillationSpeed = 2f;
+    public float detectionTime = 20f;    // durée d'oscillation
 
     [Header("Score Settings")]
     public float pointsPerSecond = 10f; // points gagnés par seconde
@@ -61,8 +61,8 @@ public class SpotlightController : MonoBehaviour
         while (elapsed < detectionTime && playerInside)
         {
             // Oscillation du faisceau
-            float scaleFactor = 1 + Mathf.Sin(elapsed * oscillationSpeed) * oscillationAmplitude;
-            spotlightVisual.intensity = originalIntensity * scaleFactor;
+            float normalized = (Mathf.Sin(elapsed * oscillationSpeed) + 1f) / 2f;
+            spotlightVisual.intensity = Mathf.Lerp(0f, originalIntensity * 2f, normalized);
             print(spotlightVisual.intensity);
 
             // Ajout de points progressif
