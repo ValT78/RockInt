@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
     public void AddScore(float points)
     {
         Score += points;
-        ScoreManager.Instance.UpdateScore((int)Score);
+        if (ScoreManager.Instance != null) ScoreManager.Instance.UpdateScore((int)Score);
     }
 
     public void TakeDamage(int damage)

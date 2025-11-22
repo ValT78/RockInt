@@ -3,7 +3,6 @@ using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
-    [Header("Références UI")]
     public Button btnDance;
     public Button btnCommands;
     public Button btnSettings;
@@ -12,7 +11,6 @@ public class MainMenuManager : MonoBehaviour
     public GameObject windowsSettings;
     public GameObject buttonPanel; // Le panel qui contient tous les boutons principaux
 
-    [Header("Game Management")]
     public string gameSceneName = "GameScene";
 
     void Start()
@@ -34,8 +32,8 @@ public class MainMenuManager : MonoBehaviour
 
     public void StartGame()
     {
+        HideEverything();
         Debug.Log("Lancement du jeu !");
-        // SceneManager.LoadScene(gameSceneName);
     }
 
     public void ShowCommandsWindow()
@@ -92,5 +90,21 @@ public class MainMenuManager : MonoBehaviour
     {
         return (windowsCommand != null && windowsCommand.activeSelf) ||
                (windowsSettings != null && windowsSettings.activeSelf);
+    }
+
+    public void HideEverything()
+    {
+        if (windowsCommand != null)
+            windowsCommand.SetActive(false);
+        if (windowsSettings != null)
+            windowsSettings.SetActive(false);
+        if (btnClose != null)
+            btnClose.gameObject.SetActive(false);
+        if (btnCommands != null)
+            btnCommands.gameObject.SetActive(false);
+        if (btnSettings != null)
+            btnSettings.gameObject.SetActive(false);
+        if (btnDance != null)
+            btnDance.gameObject.SetActive(false);
     }
 }
