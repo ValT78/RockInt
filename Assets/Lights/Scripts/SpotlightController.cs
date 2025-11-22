@@ -4,19 +4,23 @@ using System.Collections;
 public class SpotlightController : MonoBehaviour
 {
     [Header("Spotlight Visual")]
-    public Light spotlightVisual;   // le Quad ou Sprite au sol
-    public float oscillationAmplitude = 160f;
+    public Light spotlightVisual;
     public float oscillationSpeed = 2f;
-    public float detectionTime = 20f;    // durée d'oscillation
+    public float detectionTime = 20f;
+    public GameObject floatingTextPrefab;
+    public Transform parentCanvas;
+
 
     [Header("Score Settings")]
-    public float pointsPerSecond = 10f; // points gagnés par seconde
-    public float maxPoints = 50f;       // max points que le faisceau peut donner
-    public float bonusPoints = 20f;     // bonus si max atteint
+    public float pointsPerSecond = 10f;
+    public float maxPoints = 50f;
+    public float bonusPoints = 20f;
 
     private bool isOscillating = false;
     private float currentPoints = 0f;
-    private bool playerInside = false;
+
+    // Nouveau : nombre de joueurs dans l'orbe
+    private int playersInside = 0;
 
     void Start()
     {
@@ -27,20 +31,29 @@ public class SpotlightController : MonoBehaviour
     {
         float x = Random.Range(GameManager.minX, GameManager.maxX);
         float z = Random.Range(GameManager.minZ, GameManager.maxZ);
+
         transform.position = new Vector3(x, transform.position.y, z);
-        spotlightVisual.intensity = 160f; // reset intensity 
+
+        spotlightVisual.intensity = 160f;
         currentPoints = 0f;
-        playerInside = false;
-        
+        playersInside = 0;
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<Player>(out var player))
         {
-            playerInside = true;
+            playersInside++;
+            print(playersInside);
+            // 1. Spawner le +5 visuel
+            Instantiate(floatingTextPrefab, parentCanvas).GetComponent<FloatingText>().Initialize(Camera.main.WorldToScreenPoint(player.transform.position));
+
+            // 2. Ajouter réellement +5 au score
+            GameManager.Instance.AddScore(5);
+
+
             if (!isOscillating)
-                StartCoroutine(OscillateThenRespawn(player));
+                StartCoroutine(OscillateThenRespawn());
         }
     }
 
@@ -48,30 +61,33 @@ public class SpotlightController : MonoBehaviour
     {
         if (other.TryGetComponent<Player>(out var player))
         {
-            playerInside = false;
+            playersInside = Mathf.Max(0, playersInside - 1);
         }
     }
 
-    IEnumerator OscillateThenRespawn(Player player)
+    IEnumerator OscillateThenRespawn()
     {
         isOscillating = true;
         float elapsed = 0f;
         float originalIntensity = spotlightVisual.intensity;
 
-        while (elapsed < detectionTime && playerInside)
+        while (elapsed < detectionTime && playersInside > 0)
         {
-            // Oscillation du faisceau
+            // Variation très marquée entre 0 et x2
             float normalized = (Mathf.Sin(elapsed * oscillationSpeed) + 1f) / 2f;
-            spotlightVisual.intensity = Mathf.Lerp(0f, originalIntensity * 2f, normalized);
-            print(spotlightVisual.intensity);
 
-            // Ajout de points progressif
+            spotlightVisual.intensity = Mathf.Lerp(0f, originalIntensity * 2f, normalized);
+            // Debug
+            // Debug.Log("Intensity: " + spotlightVisual.intensity);
+
+            // Ajout de points progressifs
             currentPoints += pointsPerSecond * Time.deltaTime;
+
             if (currentPoints >= maxPoints)
             {
-                GameManager.Instance.AddScore(maxPoints);   // ajoute les points max
-                GameManager.Instance.AddScore(bonusPoints); // bonus pour max atteint
-                break; // fin du faisceau
+                GameManager.Instance.AddScore(maxPoints);
+                GameManager.Instance.AddScore(bonusPoints);
+                break;
             }
             else
             {
@@ -82,16 +98,15 @@ public class SpotlightController : MonoBehaviour
             yield return null;
         }
 
-        // Disparition instantanée
+        // Disparition
         spotlightVisual.intensity = 0f;
 
-        // Petite pause avant réapparition
+        // Pause avant respawn
         yield return new WaitForSeconds(0.5f);
-
-        // Réapparition ailleurs
 
         SpawnAtRandomPosition();
         spotlightVisual.intensity = 160f;
+
         isOscillating = false;
     }
 }
