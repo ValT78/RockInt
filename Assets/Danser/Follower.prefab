@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2118709584085918666}
   - component: {fileID: 2236106350127841025}
   - component: {fileID: 7153777541572823828}
+  - component: {fileID: -2205941000024370662}
   m_Layer: 0
   m_Name: Follower
   m_TagString: Untagged
@@ -157,7 +158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FollowerController
   leader: {fileID: 0}
   rb: {fileID: 2236106350127841025}
-  animator: {fileID: 0}
+  animator: {fileID: -2205941000024370662}
   orbitRadius: 1
   orbitAngularSpeed: 1.1
   solidaireSmooth: 0.08
@@ -173,6 +174,28 @@ MonoBehaviour:
   landingIndicatorPrefab: {fileID: 4561815231545137724, guid: fdb72c35e8a3a2c449500843c33aac8f, type: 3}
   accelerateAction: {fileID: 1781555164194001046, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   stopAction: {fileID: 7040659881675835329, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+--- !u!95 &-2205941000024370662
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8661203679750074012}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 565d54137b7c00b478b7796282f40c00, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1104100846683830198
 PrefabInstance:
   m_ObjectHideFlags: 0
