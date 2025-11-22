@@ -4,7 +4,13 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    public int Score { get; set; }
+    public float Score { get; set; }
+
+    [Header("Dancefloor Size")]
+    public static float minX = -5f;
+    public static float maxX = 5f;
+    public static float minZ = -5f;
+    public static float maxZ = 5f;
 
     private void Awake()
     {
@@ -25,7 +31,7 @@ public class GameManager : MonoBehaviour
         // Additional reset logic can be added here
     }
 
-    public void AddScore(int points)
+    public void AddScore(float points)
     {
         Score += points;
     }
