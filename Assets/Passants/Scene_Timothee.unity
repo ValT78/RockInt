@@ -403,11 +403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fd730196b67c024f99efd8c4fdd3bef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PassantsSpawner
-  passant: {fileID: 5861951565909694331, guid: cfcacc189204f6d4b94a33967d10de16, type: 3}
-  spawnPoints:
-  - {x: 0, y: 1, z: 0}
-  - {x: 10, y: 1, z: 10}
-  - {x: 0, y: 1, z: 0}
+  passant: {fileID: 6929641521859599203, guid: cfcacc189204f6d4b94a33967d10de16, type: 3}
   nbPassantsDepart: 10
 --- !u!4 &1108433273
 Transform:
@@ -418,7 +414,7 @@ Transform:
   m_GameObject: {fileID: 1108433271}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.80569, y: 0, z: -0.83028}
+  m_LocalPosition: {x: 2.80569, y: 3.11, z: -0.83028}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -515,13 +511,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1238898798}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalRotation: {x: 0.1688597, y: -0.023930814, z: -0.20363313, w: 0.9640785}
+  m_LocalPosition: {x: 4.14, y: 2.62, z: -7.17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 18.412, y: -6.956, z: -24.982}
 --- !u!114 &1238898801
 MonoBehaviour:
   m_ObjectHideFlags: 0

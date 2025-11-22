@@ -20,6 +20,12 @@ public class Passants : MonoBehaviour
     void Update()
     {
         rb.linearVelocity = move(type);
+        if(transform.position.x < GameManager.minX || transform.position.x > GameManager.maxX || transform.position.z > GameManager.maxZ|| transform.position.z < GameManager.minZ)
+        {
+            print("out");
+            GameManager.Instance.RemovePassant(this);
+            Destroy(gameObject,2f);
+        }
     }
 
     Vector3 move(int type)
