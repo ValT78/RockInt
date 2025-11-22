@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public class DeplacementQTE : MonoBehaviour
 {
     [SerializeField] private float speed = 20f;
+    [SerializeField] private RectTransform rectTransform;
 
     public InputActionReference QTETrigger;
 
@@ -19,17 +20,16 @@ public class DeplacementQTE : MonoBehaviour
     
     private void FixedUpdate()
     {
-        transform.position += speed * Time.deltaTime * new Vector3(0, -1, 0);
+        rectTransform.localPosition += speed * Time.deltaTime * new Vector3(0, -1, 0);
 
-        if (transform.position.y <= -100)
+        if (rectTransform.localPosition.y <= -300)
         {
             QTEManager.Instance.SpawnTouch();
             Destroy(gameObject);
         }
 
-        if (-50<=transform.position.y && transform.position.y<=50 && ReadStopHeld())
+        if (Mathf.Abs(rectTransform.localPosition.y)<=50 && ReadStopHeld())
         {
-            Destroy(gameObject);
             GameManager.Instance.AddScore(1);
         }
     }
