@@ -34,5 +34,6 @@ public class GameManager : MonoBehaviour
     public void AddScore(float points)
     {
         Score += points;
+        ScoreManager.Instance.UpdateScore((int)Score);
     }
 }
