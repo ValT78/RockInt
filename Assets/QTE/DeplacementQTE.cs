@@ -27,9 +27,10 @@ public class DeplacementQTE : MonoBehaviour
             Destroy(gameObject);
         }
 
-        /*if (-50<=transform.position.y && transform.position.y<= 50 && ReadStopHeld())
+        if (-50<=transform.position.y && transform.position.y<=50 && ReadStopHeld())
         {
             Destroy(gameObject);
-        }*/
+            GameManager.Instance.AddScore(1);
+        }
     }
 }
