@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class LineForeground : MonoBehaviour
+public class LineScript : MonoBehaviour
 {
     public RectTransform targetUI;
 
