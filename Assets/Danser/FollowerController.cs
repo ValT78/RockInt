@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class FollowerController : MonoBehaviour
+public class FollowerController : Player
 {
     public enum State { Solidaire, Ejected, Detached }
     public State CurrentState { get; private set; } = State.Solidaire;

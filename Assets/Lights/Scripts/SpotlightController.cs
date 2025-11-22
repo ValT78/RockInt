@@ -3,19 +3,20 @@ using System.Collections;
 
 public class SpotlightController : MonoBehaviour
 {
-    [Header("Zone de spawn")]
-    public float minX = -5f;
-    public float maxX = 5f;
-    public float minZ = -5f;
-    public float maxZ = 5f;
-
     [Header("Spotlight Visual")]
-    public Transform spotlightVisual;   // le Quad ou Sprite au sol
-    public float oscillationAmplitude = 0.3f;
+    public Light spotlightVisual;   // le Quad ou Sprite au sol
+    public float oscillationAmplitude = 160f;
     public float oscillationSpeed = 4f;
     public float detectionTime = 5f;    // durée d'oscillation
 
+    [Header("Score Settings")]
+    public float pointsPerSecond = 10f; // points gagnés par seconde
+    public float maxPoints = 50f;       // max points que le faisceau peut donner
+    public float bonusPoints = 20f;     // bonus si max atteint
+
     private bool isOscillating = false;
+    private float currentPoints = 0f;
+    private bool playerInside = false;
 
     void Start()
     {
@@ -24,33 +25,57 @@ public class SpotlightController : MonoBehaviour
 
     void SpawnAtRandomPosition()
     {
-        float x = Random.Range(minX, maxX);
-        float z = Random.Range(minZ, maxZ);
+        float x = Random.Range(GameManager.minX, GameManager.maxX);
+        float z = Random.Range(GameManager.minZ, GameManager.maxZ);
         transform.position = new Vector3(x, transform.position.y, z);
-        spotlightVisual.localScale = Vector3.one; // reset taille
+        spotlightVisual.intensity = 160f; // reset taille
+        currentPoints = 0f;
+        playerInside = false;
         gameObject.SetActive(true);
     }
 
     void OnTriggerEnter(Collider other)
     {
-        // Vérifie si le collider a un composant PlayerScore
-        PlayerScore player = other.GetComponent<PlayerScore>();
-        if (player != null && !isOscillating)
+        if (other.TryGetComponent<Player>(out var player))
         {
-            StartCoroutine(OscillateThenRespawn());
+            playerInside = true;
+            if (!isOscillating)
+                StartCoroutine(OscillateThenRespawn(player));
         }
     }
-    IEnumerator OscillateThenRespawn()
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.TryGetComponent<Player>(out var player))
+        {
+            playerInside = false;
+        }
+    }
+
+    IEnumerator OscillateThenRespawn(Player player)
     {
         isOscillating = true;
-
         float elapsed = 0f;
-        Vector3 originalScale = spotlightVisual.localScale;
+        float originalIntensity = spotlightVisual.intensity;
 
-        while (elapsed < detectionTime)
+        while (elapsed < detectionTime && playerInside)
         {
+            // Oscillation du faisceau
             float scaleFactor = 1 + Mathf.Sin(elapsed * oscillationSpeed) * oscillationAmplitude;
-            spotlightVisual.localScale = originalScale * scaleFactor;
+            spotlightVisual.intensity = originalIntensity * scaleFactor;
+
+            // Ajout de points progressif
+            currentPoints += pointsPerSecond * Time.deltaTime;
+            if (currentPoints >= maxPoints)
+            {
+                GameManager.Instance.AddScore(maxPoints);   // ajoute les points max
+                GameManager.Instance.AddScore(bonusPoints); // bonus pour max atteint
+                break; // fin du faisceau
+            }
+            else
+            {
+                GameManager.Instance.AddScore(pointsPerSecond * Time.deltaTime);
+            }
 
             elapsed += Time.deltaTime;
             yield return null;
