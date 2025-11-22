@@ -61,7 +61,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "QTE touch m",
+                    "name": "QTE touch m=,",
                     "type": "Button",
                     "id": "27783e5a-1dca-4821-a2ec-ba3779a39649",
                     "expectedControlType": "",
@@ -567,7 +567,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "QTE touch m",
+                    "action": "QTE touch m=,",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -578,7 +578,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "QTE touch m",
+                    "action": "QTE touch m=,",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -589,7 +589,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Touch",
-                    "action": "QTE touch m",
+                    "action": "QTE touch m=,",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -600,7 +600,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Joystick",
-                    "action": "QTE touch m",
+                    "action": "QTE touch m=,",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -611,18 +611,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "XR",
-                    "action": "QTE touch m",
+                    "action": "QTE touch m=,",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "b6f3c307-58a5-4ba7-9eb4-61a532247f74",
-                    "path": "<Keyboard>/m",
+                    "path": "<Keyboard>/semicolon",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "QTE touch m",
+                    "action": "QTE touch m=,",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
