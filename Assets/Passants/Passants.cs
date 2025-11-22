@@ -10,7 +10,9 @@ public class Passants : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        direction = direction.normalized;
+        direction = new Vector3(Random.Range(-1f, 1f),
+                                0f,
+                                Random.Range(-1f, 1f)).normalized;;
     }
 
     // Update is called once per frame
