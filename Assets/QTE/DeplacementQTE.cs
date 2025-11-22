@@ -21,7 +21,7 @@ public class DeplacementQTE : MonoBehaviour
     {
         rectTransform.localPosition += speed * Time.deltaTime * new Vector3(0, -1, 0);
 
-        if (rectTransform.localPosition.y <= -300)
+        if (rectTransform.localPosition.y <= -500)
         {
             QTEManager.Instance.SpawnTouch();
             Destroy(gameObject);
@@ -30,6 +30,7 @@ public class DeplacementQTE : MonoBehaviour
         if (Mathf.Abs(rectTransform.localPosition.y)<=50 && ReadStopHeld())
         {
             GameManager.Instance.AddScore(1);
+            Destroy(gameObject);
             /* A FAIRE DEMAIN !!!
             SoundManager.Instance.PlaySFX(footStepClip, volume: 0.9f, pitch: Random.Range(0.9f, 1.1f));*/
         }
