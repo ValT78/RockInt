@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 public class GearButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public Image gearIcon;
+    public Button btnSettings;
     public float hoverScale = 1.3f;
     public Color hoverColor = Color.yellow;
     public float rotationSpeed = 90f; // Bonus : rotation au survol !
@@ -21,7 +22,7 @@ public class GearButtonHover : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     void Update()
     {
-        // Rotation continue pendant le survol (optionnel)
+        // Rotation uniquement pendant le survol
         if (isHovering)
         {
             gearIcon.transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
