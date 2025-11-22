@@ -28,10 +28,10 @@ public class SpotlightController : MonoBehaviour
         float x = Random.Range(GameManager.minX, GameManager.maxX);
         float z = Random.Range(GameManager.minZ, GameManager.maxZ);
         transform.position = new Vector3(x, transform.position.y, z);
-        spotlightVisual.intensity = 160f; // reset taille
+        spotlightVisual.intensity = 160f; // reset intensity 
         currentPoints = 0f;
         playerInside = false;
-        gameObject.SetActive(true);
+        
     }
 
     void OnTriggerEnter(Collider other)
@@ -63,6 +63,7 @@ public class SpotlightController : MonoBehaviour
             // Oscillation du faisceau
             float scaleFactor = 1 + Mathf.Sin(elapsed * oscillationSpeed) * oscillationAmplitude;
             spotlightVisual.intensity = originalIntensity * scaleFactor;
+            print(spotlightVisual.intensity);
 
             // Ajout de points progressif
             currentPoints += pointsPerSecond * Time.deltaTime;
@@ -82,13 +83,15 @@ public class SpotlightController : MonoBehaviour
         }
 
         // Disparition instantanée
-        gameObject.SetActive(false);
+        spotlightVisual.intensity = 0f;
 
         // Petite pause avant réapparition
         yield return new WaitForSeconds(0.5f);
 
         // Réapparition ailleurs
+
         SpawnAtRandomPosition();
+        spotlightVisual.intensity = 160f;
         isOscillating = false;
     }
 }
