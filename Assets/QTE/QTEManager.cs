@@ -27,9 +27,7 @@ public class QTEManager : MonoBehaviour
 
     private void SpawnTouch(int i)
     {
-        GameObject newUI = Instantiate(PickTouch());
-        newUI.transform.position = new Vector3(391, 300, 0);
-        newUI.transform.SetParent(parentCanvas.transform, false);
+        GameObject newUI = Instantiate(PickTouch(), new Vector3(391, 300, 0), Quaternion.identity);
     }
 
     private GameObject PickTouch()
