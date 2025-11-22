@@ -7,7 +7,7 @@ public class QTEManager : MonoBehaviour
 {
     [SerializeField] private GameObject[] touchsPrefab;
     [SerializeField] private float platformLenghtY = 100f;
-    [SerializeField] private int numSpawning = 10;
+    [SerializeField] private int numSpawning = 12;
 
     public static QTEManager Instance { get; private set; }
 
@@ -27,12 +27,12 @@ public class QTEManager : MonoBehaviour
 
     private void SpawnTouch(int i)
     {
-        GameObject newUI = Instantiate(PickTouch(), new Vector3(1351, i*platformLenghtY+340, 0), Quaternion.identity, transform.GetChild(0));
+        GameObject newUI = Instantiate(PickTouch(), new Vector3(1870, i*platformLenghtY+140, 0), Quaternion.identity, transform.Find("Line"));
     }
 
     private GameObject PickTouch()
     {
-        int randomIndex = Random.Range(0, touchsPrefab.Length);
+        int randomIndex = Random.Range(0, touchsPrefab.Length-1);
         return touchsPrefab[randomIndex];
     }
 }

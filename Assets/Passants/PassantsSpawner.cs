@@ -9,6 +9,8 @@ public class PassantsSpawner : MonoBehaviour
     int nbPassants = 0;
     int currentSpawnIndex = 0;
     int nbspawnpts = 4;
+    float cooldown = 1;
+    float courrant = 0;
     Vector3[] spawnPoints;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,11 +21,16 @@ public class PassantsSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance.passants.Count<nbPassantsDepart)
+        if (courrant > 0)
+        {
+            courrant=courrant-Time.deltaTime;
+        }
+        if (GameManager.Instance.passants.Count<nbPassantsDepart && courrant<=0)
         {
             Passants curentPassant = Instantiate(passant, spawnPoints[Random.Range(0,nbspawnpts)], Quaternion.identity);
             curentPassant.name = "Passant"+nbPassants;
             GameManager.Instance.AddPassant(curentPassant);
+            courrant = cooldown;
         }
     }
 
