@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 603409274876421294}
   - component: {fileID: 4115134346199445071}
   - component: {fileID: 8754005593357183009}
+  - component: {fileID: 3181399977606682995}
   m_Layer: 0
   m_Name: Leader
   m_TagString: Untagged
@@ -189,6 +190,28 @@ MonoBehaviour:
   landingIndicatorPrefab: {fileID: 4561815231545137724, guid: fdb72c35e8a3a2c449500843c33aac8f, type: 3}
   moveAction: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   eAction: {fileID: 1781555164194001046, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+--- !u!95 &3181399977606682995
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2041580720357946547}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &5773264129989746748
 PrefabInstance:
   m_ObjectHideFlags: 0
