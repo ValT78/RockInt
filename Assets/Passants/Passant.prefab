@@ -134,9 +134,11 @@ MonoBehaviour:
   damage: 1
   changeDirInterval: 2
   probaType:
-  - 0.1
   - 0.9
+  - 0.1
   materialBourre: {fileID: 2100000, guid: d9c6f2c6fb3ae2b4aaf285fd99995bed, type: 2}
+  delaiAvantBourre: 6
+  centreScene: {x: 0, y: 0, z: 0}
 --- !u!54 &2695410788005261709
 Rigidbody:
   m_ObjectHideFlags: 0

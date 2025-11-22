@@ -10,14 +10,23 @@ public class Passants : MonoBehaviour
     [SerializeField] float changeDirInterval = 2f;
     [SerializeField] float[] probaType = {0.9f, 0.1f};
     [SerializeField] Material materialBourre;
+    [SerializeField] float delaiAvantBourre = 6f;
+    [SerializeField] Vector3 centreScene = Vector3.zero;
     float timer = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        direction = new Vector3(Random.Range(-1f, 1f),
-                                0f,
-                                Random.Range(-1f, 1f)).normalized;
+        
+        Vector3 dir = (centreScene - transform.position).normalized;
+
+        // Limiter l’angle pour qu’il reste dans le bon quart
+        float maxAngle = 45f; 
+        float angle = Random.Range(-maxAngle, maxAngle);
+
+        direction = Quaternion.Euler(0, angle, 0) * dir;
+        direction.y = 0f;
+    
         float alea=Random.Range(0f,1f);
         print(alea);
         float cumul = 0f;
@@ -28,7 +37,7 @@ public class Passants : MonoBehaviour
             if (alea <= cumul)
             {
                 type = i+1;
-                
+                break;
             }
             
         }
@@ -48,13 +57,12 @@ public class Passants : MonoBehaviour
         else if (type == 2)
         {
             timer += Time.deltaTime;
-
-            if (timer >= changeDirInterval)
-    {
+            if (timer >= delaiAvantBourre)
+            {
                 NewDirection();
-                timer = 0f;
+                timer -= changeDirInterval;
+            }
             rb.linearVelocity= direction*speed;
-    }
         }
         if(transform.position.x < GameManager.minX || transform.position.x > GameManager.maxX || transform.position.z > GameManager.maxZ|| transform.position.z < GameManager.minZ)
         {
