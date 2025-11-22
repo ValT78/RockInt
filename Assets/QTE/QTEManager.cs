@@ -6,7 +6,8 @@ using Random = UnityEngine.Random;
 public class QTEManager : MonoBehaviour
 {
     [SerializeField] private GameObject[] touchsPrefab;
-    [SerializeField] private int numSpawning = 4;
+    [SerializeField] private float platformLenghtY = 100f;
+    [SerializeField] private int numSpawning = 10;
 
     public static QTEManager Instance { get; private set; }
 
@@ -26,15 +27,12 @@ public class QTEManager : MonoBehaviour
 
     private void SpawnTouch(int i)
     {
-        int rd = PickTouch();
-        GameObject newUI = Instantiate(touchsPrefab[rd], transform.GetChild(0));
-        newUI.transform.position = new Vector3(832, 700, 0);
-        touchsPrefab[rd] = newUI;
+        GameObject newUI = Instantiate(PickTouch(), new Vector3(832, i*platformLenghtY, 0), Quaternion.identity, transform.GetChild(0));
     }
 
-    private int PickTouch()
+    private GameObject PickTouch()
     {
         int randomIndex = Random.Range(0, touchsPrefab.Length);
-        return randomIndex;
+        return touchsPrefab[randomIndex];
     }
 }
