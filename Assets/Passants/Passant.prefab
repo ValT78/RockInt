@@ -132,6 +132,11 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 1}
   type: 1
   damage: 1
+  changeDirInterval: 2
+  probaType:
+  - 0.1
+  - 0.9
+  materialBourre: {fileID: 2100000, guid: d9c6f2c6fb3ae2b4aaf285fd99995bed, type: 2}
 --- !u!54 &2695410788005261709
 Rigidbody:
   m_ObjectHideFlags: 0
