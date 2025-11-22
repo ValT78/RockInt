@@ -70,7 +70,7 @@ MonoBehaviour:
   spotlightVisual: {fileID: 1807016633523346964}
   oscillationAmplitude: 0.5
   oscillationSpeed: 40
-  detectionTime: 5
+  detectionTime: 6
   pointsPerSecond: 10
   maxPoints: 50
   bonusPoints: 20

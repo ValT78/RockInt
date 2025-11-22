@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
@@ -33,7 +34,7 @@ public class MainMenuManager : MonoBehaviour
     public void StartGame()
     {
         HideEverything();
-        Debug.Log("Lancement du jeu !");
+        SceneManager.LoadScene(1);
     }
 
     public void ShowCommandsWindow()
