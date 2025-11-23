@@ -967,6 +967,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2025054558}
     m_Modifications:
+    - target: {fileID: 5044602580742438663, guid: e8fc13e34f0a1d9489d2a54282c33b67, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 5044602580742438663, guid: e8fc13e34f0a1d9489d2a54282c33b67, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4282777829
+      objectReference: {fileID: 0}
     - target: {fileID: 6576204170163358082, guid: e8fc13e34f0a1d9489d2a54282c33b67, type: 3}
       propertyPath: m_LocalPosition.x
       value: 800
@@ -1217,6 +1225,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2025054558}
     m_Modifications:
+    - target: {fileID: 2595533069371309659, guid: 2789c6688c162854093e9289357ce4e2, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278309631
+      objectReference: {fileID: 0}
     - target: {fileID: 2647315454722035145, guid: 2789c6688c162854093e9289357ce4e2, type: 3}
       propertyPath: m_Name
       value: Score
