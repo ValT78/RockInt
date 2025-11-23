@@ -639,8 +639,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2473300869829632752, guid: 3a83cb5513b04f04eb5e0100992b5dbd, type: 3}
       propertyPath: touchsPrefab.Array.size
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 2473300869829632752, guid: 3a83cb5513b04f04eb5e0100992b5dbd, type: 3}
+      propertyPath: 'touchsPrefab.Array.data[6]'
+      value: 
+      objectReference: {fileID: 7763612107898937262, guid: cb5c85127d9e65b4ebf363de21d63ea0, type: 3}
     - target: {fileID: 3794253041422656687, guid: 3a83cb5513b04f04eb5e0100992b5dbd, type: 3}
       propertyPath: m_Name
       value: QTE_holder
