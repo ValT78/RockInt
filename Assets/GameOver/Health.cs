@@ -14,6 +14,7 @@ public class Health : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            UpdateHealth(5);
         }
         else
         {
@@ -21,10 +22,7 @@ public class Health : MonoBehaviour
         }
     }
     
-    void Start()
-    {
-        UpdateHealth(0);
-    }
+    
     
 
     // Update is called once per frame

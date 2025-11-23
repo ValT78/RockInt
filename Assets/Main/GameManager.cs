@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     public float Score { get; set; }
-
+    public int maxHP = 5;
     public int health { get; set;} = 5;
 
     public List<Passants> passants;
@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     public void ResetGame()
     {
         Score = 0;
+        health = maxHP;
         SceneManager.LoadScene(0);
         // Additional reset logic can be added here
     }

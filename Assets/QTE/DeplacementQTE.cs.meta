@@ -1,2 +1,15 @@
 fileFormatVersion: 2
 guid: 6b61909f4db0cdf448c12a759e5cd374
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - rectTransform: {instanceID: 0}
+  - QTETrigger: {instanceID: 0}
+  - cymbal: {fileID: 8300000, guid: 7b890333801cab944bdbd952f601048c, type: 3}
+  - follower: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
