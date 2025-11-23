@@ -115,6 +115,17 @@ public class Passants : MonoBehaviour
 
     void Update()
     {
+        if (visualRoot != null)
+        {
+            Vector3 flatVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
+
+            if (flatVel.sqrMagnitude > 0.01f)
+            {
+                Quaternion targetRot = Quaternion.LookRotation(flatVel.normalized);
+                visualRoot.transform.rotation =
+                    Quaternion.Slerp(visualRoot.transform.rotation, targetRot, Time.deltaTime * 10f);
+            }
+        }
         // Movement behavior
         if (type == 1)
         {

@@ -178,8 +178,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PassantsSpawner
   passantPrefab: {fileID: 6929641521859599203, guid: cfcacc189204f6d4b94a33967d10de16, type: 3}
-  initialMaxPassants: 3
-  passantsGrowthPerSecond: 0.02
+  initialMaxPassants: 2
+  passantsGrowthPerSecond: 0.1
   cooldown: 1
   spawnRandomJitter: 0.3
   spawnMarginY: 1
