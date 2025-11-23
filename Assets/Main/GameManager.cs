@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] GameObject gameOverPanel;
+    //[SerializeField] GameObject gameOverPanel;
     public static GameManager Instance { get; private set; }
 
     public float Score { get; set; }
@@ -50,13 +50,14 @@ public class GameManager : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        print("touché");
         health -= damage;
         if (Health.Instance != null) Health.Instance.UpdateHealth(health);
 
         if (health <= 0)
         {
             print("Game Over");
-            gameOverPanel.SetActive(true);
+            GameOver.Instance.gameOverPanel.SetActive(true);
         }
     }
 

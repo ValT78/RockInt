@@ -158,11 +158,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LeaderController
   rb: {fileID: 4115134346199445071}
   follower: {fileID: 0}
-  moveSpeed: 1
-  detachedSpeedMultiplier: 8
+  moveSpeed: 1.5
+  detachedSpeedMultiplier: 3
   chargeMaxTime: 1.2
   minEjectDistance: 1.5
-  maxEjectDistance: 10
+  maxEjectDistance: 5
   chargeToDistance:
     serializedVersion: 2
     m_Curve:

@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1527792733474067198}
   - component: {fileID: 5131908729797413359}
-  - component: {fileID: 3462899794653345561}
   - component: {fileID: 2284734193275793868}
   - component: {fileID: 659636426446269655}
   m_Layer: 5
@@ -48,19 +47,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 146519256536077295}
   m_CullTransparentMesh: 1
---- !u!114 &3462899794653345561
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 146519256536077295}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bc4a2c241df4414ab2b16e7adfec815, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameOver
-  restartButton: {fileID: 659636426446269655}
 --- !u!114 &2284734193275793868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,6 +266,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7956767446633079092}
+  - component: {fileID: 3433274112479396333}
   m_Layer: 0
   m_Name: PopupGameOver
   m_TagString: Untagged
@@ -303,6 +290,19 @@ Transform:
   - {fileID: 3880977801683581553}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3433274112479396333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2763596865378653431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bc4a2c241df4414ab2b16e7adfec815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameOver
+  restartButton: {fileID: 659636426446269655}
 --- !u!1 &7030772605265722774
 GameObject:
   m_ObjectHideFlags: 0
