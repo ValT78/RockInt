@@ -13,10 +13,10 @@ public class GameManager : MonoBehaviour
     public List<Passants> passants;
 
     [Header("Dancefloor Size")]
-    public static float minX = -10f;
-    public static float maxX = 10f;
-    public static float minZ = -8f;
-    public static float maxZ = 8f;
+    public static float minX = -14f;
+    public static float maxX = 8f;
+    public static float minZ = -11f;
+    public static float maxZ = 10f;
 
     private void Awake()
     {

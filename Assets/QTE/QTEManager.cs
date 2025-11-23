@@ -32,7 +32,7 @@ public class QTEManager : MonoBehaviour
 
     private GameObject PickTouch()
     {
-        int randomIndex = Random.Range(0, touchsPrefab.Length-1);
+        int randomIndex = Random.Range(0, touchsPrefab.Length);
         return touchsPrefab[randomIndex];
     }
 }
