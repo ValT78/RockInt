@@ -7,12 +7,11 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] GameObject gameOverPanel;
-    [SerializeField] Health affichageHealth;
     public static GameManager Instance { get; private set; }
 
     public float Score { get; set; }
 
-    public int Health { get; set;} = 5;
+    public int health { get; set;} = 5;
 
     public List<Passants> passants;
 
@@ -50,10 +49,10 @@ public class GameManager : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        Health -= damage;
-        affichageHealth.UpdateHealth();
+        health -= damage;
+        if (Health.Instance != null) Health.Instance.UpdateHealth(health);
 
-        if (Health <= 0)
+        if (health <= 0)
         {
             print("Game Over");
             gameOverPanel.SetActive(true);
