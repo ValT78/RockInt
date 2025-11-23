@@ -7,7 +7,8 @@ public class DeplacementQTE : MonoBehaviour
     [SerializeField] private RectTransform rectTransform;
 
     public InputActionReference QTETrigger;
-    public AudioClip trance_lead;
+    public AudioClip cymbal;
+    private FollowerController follower;
 
     bool ReadStopHeld()
     {
@@ -17,13 +18,14 @@ public class DeplacementQTE : MonoBehaviour
         }
         return false;
     }
-    
+
+    private void Start()
+    {
+        SoundManager.Instance.SetMusicVolume(1);
+        follower = FindAnyObjectByType<FollowerController>();
+    }
     private void FixedUpdate()
     {
-        if (rectTransform.localPosition.y<-50 && rectTransform.localPosition.y>-52 && gameObject.name!="Touche 7")
-        {
-            SoundManager.Instance.StopAllSFX();
-        }
 
         rectTransform.localPosition += speed * Time.deltaTime * new Vector3(0, -1, 0);
 
@@ -33,11 +35,12 @@ public class DeplacementQTE : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (Mathf.Abs(rectTransform.localPosition.y)<=50 && ReadStopHeld())
+        if (Mathf.Abs(rectTransform.localPosition.y) <= 50 && ReadStopHeld() && follower.CurrentState==FollowerController.State.Solidaire)
         {
             GameManager.Instance.AddScore(5);
             QTEManager.Instance.Checkmark(rectTransform.localPosition.y);
-            SoundManager.Instance.PlaySFX(trance_lead, volume: 0.9f, pitch: Random.Range(0.9f, 1.1f));
+            SoundManager.Instance.PlaySFX(cymbal, volume: 20f, pitch: Random.Range(0.9f, 1.1f));
+            SoundManager.Instance.SetSFXVolume(1000);
             Destroy(gameObject);
         }
     }

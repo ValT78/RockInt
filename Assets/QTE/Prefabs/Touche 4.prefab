@@ -92,6 +92,8 @@ MonoBehaviour:
   speed: 40
   rectTransform: {fileID: 1501491761168562145}
   QTETrigger: {fileID: 4437610473985854692, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  cymbal: {fileID: 8300000, guid: 7b890333801cab944bdbd952f601048c, type: 3}
+  follower: {fileID: 7153777541572823828, guid: 22d6e5176a1b49c498a62ecbb3cd500d, type: 3}
 --- !u!1 &6963158054120751342
 GameObject:
   m_ObjectHideFlags: 0
