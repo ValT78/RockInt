@@ -8,6 +8,7 @@ public class MainMenuManager : MonoBehaviour
     public Button btnCommands;
     public Button btnSettings;
     public Button btnClose;
+    public Button btnQuit;
     public GameObject windowsCommand;
     public GameObject windowsSettings;
     public GameObject buttonPanel; // Le panel qui contient tous les boutons principaux
@@ -26,6 +27,7 @@ public class MainMenuManager : MonoBehaviour
 
         // Configure les événements des boutons
         btnDance.onClick.AddListener(StartGame);
+        btnQuit.onClick.AddListener(ExitGame);
         btnCommands.onClick.AddListener(ShowCommandsWindow);
         btnSettings.onClick.AddListener(ShowSettingsWindow);
         btnClose.onClick.AddListener(HideAllWindows);
@@ -35,6 +37,11 @@ public class MainMenuManager : MonoBehaviour
     {
         HideEverything();
         SceneManager.LoadScene(1);
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 
     public void ShowCommandsWindow()
@@ -107,5 +114,7 @@ public class MainMenuManager : MonoBehaviour
             btnSettings.gameObject.SetActive(false);
         if (btnDance != null)
             btnDance.gameObject.SetActive(false);
+        if (btnQuit != null)
+            btnQuit.gameObject.SetActive(false);
     }
 }
