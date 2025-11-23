@@ -62,6 +62,8 @@ MonoBehaviour:
   speed: 40
   rectTransform: {fileID: 8144266146181340013}
   QTETrigger: {fileID: 1120369429361536294, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  cymbal: {fileID: 8300000, guid: 7b890333801cab944bdbd952f601048c, type: 3}
+  follower: {fileID: 0}
 --- !u!114 &3709900311115840605
 MonoBehaviour:
   m_ObjectHideFlags: 0
