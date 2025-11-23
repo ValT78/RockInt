@@ -178,10 +178,9 @@ public class Passants : MonoBehaviour
             Random.Range(-1f, 1f)).normalized;
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnCollisionEnter(Collision collision)
     {
-        
-        if (other.TryGetComponent<Player>(out var _))
+        if (collision.gameObject.TryGetComponent<Player>(out var _))
         {
             // hit player
             GameManager.Instance.TakeDamage(damage);
