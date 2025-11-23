@@ -56,6 +56,7 @@ MonoBehaviour:
   - {fileID: 3714163626346280821, guid: b75ac57fe59295e43b9133f2d91c320f, type: 3}
   - {fileID: 422140345266914235, guid: 93724e7e3e9cd794690c8def1788d07a, type: 3}
   - {fileID: 7763612107898937262, guid: 28b8d0cada67a0249b75ba8483a9bfd9, type: 3}
+  - {fileID: 7763612107898937262, guid: cb5c85127d9e65b4ebf363de21d63ea0, type: 3}
   platformLenghtY: 100
   numSpawning: 12
 --- !u!1 &4197190611645367998

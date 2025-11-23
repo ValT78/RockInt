@@ -30,9 +30,14 @@ public class QTEManager : MonoBehaviour
         GameObject newUI = Instantiate(PickTouch(), new Vector3(1870, i*platformLenghtY+140, 0), Quaternion.identity, transform.Find("Line"));
     }
 
+    public void Checkmark(float y)
+    {
+        GameObject check = Instantiate(touchsPrefab[6], new Vector3(1870, y+540, 0), Quaternion.identity, transform.Find("Line"));
+    }
+
     private GameObject PickTouch()
     {
-        int randomIndex = Random.Range(0, touchsPrefab.Length);
+        int randomIndex = Random.Range(0, touchsPrefab.Length-1);
         return touchsPrefab[randomIndex];
     }
 }
