@@ -29,8 +29,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.1805, y: 19.9, z: -2.554}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.69, y: 1.69, z: 1.69}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 637317224984563805}
   m_Father: {fileID: 0}
@@ -104,10 +104,10 @@ MonoBehaviour:
   orbitAngularSpeed: 1.1
   solidaireSmooth: 0.08
   ejectTime: 0.6
-  baseReturnSpeed: 6
+  baseReturnSpeed: 20
   returnAccel: 20
   maxReturnSpeed: 30
-  attachDistance: 1
+  attachDistance: 1.7
   ejectForcePerUnitDistance: 1.6
   minEjectImpulse: 3
   maxEjectImpulse: 24
