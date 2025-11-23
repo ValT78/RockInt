@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
     {
         print("touché");
         health -= damage;
-        if (Health.Instance != null) Health.Instance.UpdateHealth(health);
+        if (Health.Instance != null) Health.Instance.SetHealth(health);
 
         if (health <= 0)
         {
