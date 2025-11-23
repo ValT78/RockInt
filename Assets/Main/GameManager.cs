@@ -37,7 +37,6 @@ public class GameManager : MonoBehaviour
     public void ResetGame()
     {
         Score = 0;
-        print("restart");
         SceneManager.LoadScene(0);
         // Additional reset logic can be added here
     }
