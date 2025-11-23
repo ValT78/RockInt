@@ -327,7 +327,7 @@ public class FollowerController : Player
     void SetAnimationBools(bool solidaire, bool ejected, bool detached)
     {
         if (animator == null) return;
-
+        print("ok");
         animator.SetBool("IsSolidaire", solidaire);
         animator.SetBool("IsEjected", ejected);
         animator.SetBool("IsDetached", detached);
