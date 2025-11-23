@@ -169,6 +169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FloatingText
   floatSpeed: 1
   duration: 1
+  rectTransform: {fileID: 3715845084649743561}
 --- !u!1 &7709664829806327897
 GameObject:
   m_ObjectHideFlags: 0
@@ -240,6 +241,8 @@ MonoBehaviour:
   spotlightVisual: {fileID: 1807016633523346964}
   oscillationSpeed: 40
   detectionTime: 6
+  floatingTextPrefab: {fileID: 0}
+  parentCanvas: {fileID: 0}
   pointsPerSecond: 10
   maxPoints: 50
   bonusPoints: 20
