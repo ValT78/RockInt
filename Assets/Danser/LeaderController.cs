@@ -80,16 +80,23 @@ public class LeaderController : Player
             speed *= detachedSpeedMultiplier;
 
         Vector3 targetPos = rb.position + movement * speed * Time.fixedDeltaTime;
-       
-        if(follower.CurrentState == FollowerController.State.Detached)
+
+        if (follower != null)
         {
-            SetAnimationBools(false, false, true);
+            if (follower.CurrentState == FollowerController.State.Detached)
+            {
+                SetAnimationBools(false, false, true);
+            }
+            else if (follower.CurrentState == FollowerController.State.Ejected)
+            {
+                SetAnimationBools(false, true, false);
+            }
+            else if (follower.CurrentState == FollowerController.State.Solidaire)
+            {
+                SetAnimationBools(true, false, false);
+            }
         }
-        else if(follower.CurrentState == FollowerController.State.Ejected)
-        {
-            SetAnimationBools(false, true, false);
-        }
-        else if(follower.CurrentState == FollowerController.State.Solidaire)
+        else
         {
             SetAnimationBools(true, false, false);
         }

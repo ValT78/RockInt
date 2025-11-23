@@ -132,6 +132,20 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 1}
   type: 2
   damage: 1
+  changeDirInterval: 2
+  probaType:
+  - 0.9
+  - 0.1
+  modelVariants: []
+  drunkAccessories: []
+  materialBourre: {fileID: 0}
+  delaiAvantBourre: 6
+  centreScene: {x: 0, y: 0, z: 0}
+  drunkBobbingAmplitude: 0.08
+  drunkBobbingSpeed: 2.5
+  drunkYawAmplitude: 10
+  drunkYawSpeed: 1.7
+  ouch: {fileID: 8300000, guid: d2d35050caac6d44083973c09823e010, type: 3}
 --- !u!54 &1674660156129274725
 Rigidbody:
   m_ObjectHideFlags: 0

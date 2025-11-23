@@ -147,6 +147,7 @@ MonoBehaviour:
   drunkBobbingSpeed: 2.5
   drunkYawAmplitude: 10
   drunkYawSpeed: 1.7
+  ouch: {fileID: 8300000, guid: d2d35050caac6d44083973c09823e010, type: 3}
 --- !u!54 &2695410788005261709
 Rigidbody:
   m_ObjectHideFlags: 0
