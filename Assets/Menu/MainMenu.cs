@@ -24,6 +24,8 @@ public class MainMenuManager : MonoBehaviour
             windowsSettings.SetActive(false);
         if (btnClose != null)
             btnClose.gameObject.SetActive(false);
+        if (buttonPanel != null)
+            buttonPanel.SetActive(true);
 
         // Configure les événements des boutons
         btnDance.onClick.AddListener(StartGame);
