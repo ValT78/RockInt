@@ -29,7 +29,7 @@ public class DeplacementQTE : MonoBehaviour
 
         rectTransform.localPosition += speed * Time.deltaTime * new Vector3(0, -1, 0);
 
-        if (rectTransform.localPosition.y <= -500)
+        if (rectTransform.localPosition.y <= -600)
         {
             QTEManager.Instance.SpawnTouch();
             Destroy(gameObject);
