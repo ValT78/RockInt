@@ -8,7 +8,7 @@ public class DeplacementQTE : MonoBehaviour
 
     public InputActionReference QTETrigger;
     public AudioClip cymbal;
-    public FollowerController follower;
+    private FollowerController follower;
 
     bool ReadStopHeld()
     {
@@ -22,6 +22,7 @@ public class DeplacementQTE : MonoBehaviour
     private void Start()
     {
         SoundManager.Instance.SetMusicVolume(1);
+        follower = FindAnyObjectByType<FollowerController>();
     }
     private void FixedUpdate()
     {
@@ -34,7 +35,7 @@ public class DeplacementQTE : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (Mathf.Abs(rectTransform.localPosition.y) <= 50 && ReadStopHeld() && follower==null)
+        if (Mathf.Abs(rectTransform.localPosition.y) <= 50 && ReadStopHeld() && follower.CurrentState==FollowerController.State.Solidaire)
         {
             GameManager.Instance.AddScore(5);
             QTEManager.Instance.Checkmark(rectTransform.localPosition.y);
