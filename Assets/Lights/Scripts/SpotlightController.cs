@@ -48,7 +48,7 @@ public class SpotlightController : MonoBehaviour
             // 1. Spawner le +5 visuel
             Instantiate(floatingTextPrefab, parentCanvas).GetComponent<FloatingText>().Initialize(Camera.main.WorldToScreenPoint(player.transform.position));
 
-            // 2. Ajouter réellement +5 au score
+            // 2. Ajouter rï¿½ellement +5 au score
             GameManager.Instance.AddScore(5);
 
 
@@ -73,7 +73,7 @@ public class SpotlightController : MonoBehaviour
 
         while (elapsed < detectionTime && playersInside > 0)
         {
-            // Variation très marquée entre 0 et x2
+            // Variation trï¿½s marquï¿½e entre 0 et x2
             float normalized = (Mathf.Sin(elapsed * oscillationSpeed) + 1f) / 2f;
 
             spotlightVisual.intensity = Mathf.Lerp(0f, originalIntensity * 2f, normalized);
