@@ -7,6 +7,19 @@ public class ScoreManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI scoreText;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     void Start()
     {
         scoreText.text = "0";

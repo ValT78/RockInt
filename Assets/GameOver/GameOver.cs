@@ -18,7 +18,6 @@ public class GameOver : MonoBehaviour
 
     void RestartGame()
     {
-        print("appui");
         GameManager.Instance.ResetGame();
     }
 }
