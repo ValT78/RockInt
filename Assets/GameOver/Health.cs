@@ -37,7 +37,7 @@ public class Health : MonoBehaviour
     [SerializeField] float shakeDuration = 0.12f;
 
     // internal
-    Sprite builtinSprite;
+    [SerializeField] Sprite builtinSprite;
     Coroutine numberTweenCoroutine;
     Coroutine heartPulseCoroutine;
     Vector3 heartOrigScale;
@@ -59,9 +59,6 @@ public class Health : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
-        // builtin UI sprite (no external assets)
-        
 
         // cache
         if (healthText == null) Debug.LogError("[Health] healthText not assigned");
@@ -95,8 +92,57 @@ public class Health : MonoBehaviour
     {
         SetHealth(currentHealth + amount);
         // small heal feedback (optional) - simple scale
-/*        if (icon != null) StartCoroutine(QuickPulse(icon, 0.92f, 0.08f));
-*/    }
+        if (icon != null) StartCoroutine(QuickPulse(icon, 0.92f, 0.08f));
+    }
+
+    /// <summary>
+    /// Quick pulse on a UI RectTransform: grow to targetScale then bounce back.
+    /// Usage: StartCoroutine(QuickPulse(icon, 0.92f, 0.08f));
+    /// </summary>
+    IEnumerator QuickPulse(RectTransform rt, float targetScale = 1.15f, float totalTime = 0.2f)
+    {
+        if (rt == null) yield break;
+
+        Vector3 origScale = rt.localScale;
+        Quaternion origRot = rt.localRotation;
+
+        float half = Mathf.Max(0.01f, totalTime * 0.5f);
+        float t = 0f;
+
+        // Grow phase (ease out)
+        while (t < half)
+        {
+            t += Time.deltaTime;
+            float p = Mathf.Clamp01(t / half);
+            // easeOutQuad
+            float eased = 1f - (1f - p) * (1f - p);
+            float s = Mathf.Lerp(origScale.x, targetScale, eased);
+            rt.localScale = Vector3.one * s;
+            // slight rotation for feel
+            float rot = Mathf.Sin(p * Mathf.PI) * (heartRotDeg * 0.3f);
+            rt.localRotation = Quaternion.Euler(0f, 0f, rot);
+            yield return null;
+        }
+
+        // Shrink phase (overshoot back to orig with slight bounce)
+        t = 0f;
+        while (t < half)
+        {
+            t += Time.deltaTime;
+            float p = Mathf.Clamp01(t / half);
+            // back-ease (overshoot then settle)
+            float eased = EaseOutBack(targetScale, origScale.x, p);
+            rt.localScale = Vector3.one * eased;
+            // reduce rotation
+            float rot = Mathf.Sin((1f - p) * Mathf.PI) * (heartRotDeg * 0.14f);
+            rt.localRotation = Quaternion.Euler(0f, 0f, rot);
+            yield return null;
+        }
+
+        // restore exactly
+        rt.localScale = origScale;
+        rt.localRotation = origRot;
+    }
 
     public void TakeDamage(int amount)
     {
