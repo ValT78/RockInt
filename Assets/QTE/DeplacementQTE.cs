@@ -32,8 +32,7 @@ public class DeplacementQTE : MonoBehaviour
             GameManager.Instance.AddScore(1);
             QTEManager.Instance.Checkmark(rectTransform.localPosition.y);
             Destroy(gameObject);
-            /* A FAIRE DEMAIN !!!
-            SoundManager.Instance.PlaySFX(footStepClip, volume: 0.9f, pitch: Random.Range(0.9f, 1.1f));*/
+            /*SoundManager.Instance.PlaySFX("Trance_lead", volume: 0.9f, pitch: Random.Range(0.9f, 1.1f));*/
         }
     }
 }
