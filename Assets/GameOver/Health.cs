@@ -4,7 +4,6 @@ using TMPro;
 
 public class Health : MonoBehaviour
 {
-    public static Health Instance { get; private set; }
 
     [SerializeField] private TextMeshProUGUI healthText;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
