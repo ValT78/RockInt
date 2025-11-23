@@ -7,6 +7,7 @@ public class LeaderController : Player
     [Header("References")]
     public Rigidbody rb;
     public FollowerController follower;
+    public Animator animator; // optional
 
     [Header("Movement")]
     public float moveSpeed = 3f;
@@ -80,6 +81,19 @@ public class LeaderController : Player
 
         Vector3 targetPos = rb.position + movement * speed * Time.fixedDeltaTime;
        
+        if(follower.CurrentState == FollowerController.State.Detached)
+        {
+            SetAnimationBools(false, false, true);
+        }
+        else if(follower.CurrentState == FollowerController.State.Ejected)
+        {
+            SetAnimationBools(false, true, false);
+        }
+        else if(follower.CurrentState == FollowerController.State.Solidaire)
+        {
+            SetAnimationBools(true, false, false);
+        }
+
         // --- Clamp leader pos to dancefloor (optionnel margin pour ne pas coller au bord) ---
         float leaderMargin = 0.2f; // tweak : marge pour que le leader n'aille pas tout au bord
         targetPos = ClampPositionToDancefloor(targetPos, leaderMargin);
@@ -158,5 +172,13 @@ public class LeaderController : Player
     {
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireSphere(transform.position, 0.25f);
+    }
+
+    void SetAnimationBools(bool solidaire, bool ejected, bool detached)
+    {
+        if (animator == null) return;
+        animator.SetBool("IsSolidaire", solidaire);
+        animator.SetBool("IsEjected", ejected);
+        animator.SetBool("IsDetached", detached);
     }
 }
