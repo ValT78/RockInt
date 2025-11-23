@@ -56,9 +56,8 @@ MonoBehaviour:
   - {fileID: 3714163626346280821, guid: b75ac57fe59295e43b9133f2d91c320f, type: 3}
   - {fileID: 422140345266914235, guid: 93724e7e3e9cd794690c8def1788d07a, type: 3}
   - {fileID: 7763612107898937262, guid: 28b8d0cada67a0249b75ba8483a9bfd9, type: 3}
-  - {fileID: 7763612107898937262, guid: 959416b6b1a81b3478c05a3d624280b1, type: 3}
   platformLenghtY: 100
-  numSpawning: 10
+  numSpawning: 12
 --- !u!1 &4197190611645367998
 GameObject:
   m_ObjectHideFlags: 0
