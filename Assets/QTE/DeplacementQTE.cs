@@ -145,9 +145,5 @@ public class DeplacementQTE : MonoBehaviour
         // restore rect transform (safety)
         rectTransform.localScale = origScale;
         rectTransform.localRotation = origRot;
-
-        // spawn next touch and destroy this QTE object
-        QTEManager.Instance.SpawnTouch();
-        Destroy(gameObject);
     }
 }
