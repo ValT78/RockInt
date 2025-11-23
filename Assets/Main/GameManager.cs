@@ -1,9 +1,12 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] GameObject gameOverPanel;
     public static GameManager Instance { get; private set; }
 
     public float Score { get; set; }
@@ -34,6 +37,8 @@ public class GameManager : MonoBehaviour
     public void ResetGame()
     {
         Score = 0;
+        print("restart");
+        SceneManager.LoadScene(0);
         // Additional reset logic can be added here
     }
 
@@ -49,7 +54,7 @@ public class GameManager : MonoBehaviour
         if (Health <= 0)
         {
             print("Game Over");
-            ResetGame();
+            gameOverPanel.SetActive(true);
         }
     }
 
