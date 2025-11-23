@@ -227,6 +227,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DeplacementQTE
   speed: 40
   rectTransform: {fileID: 7734698797853074445}
+  successFlashColor: {r: 1, g: 0.95, b: 0.6, a: 0.9}
+  feedbackDuration: 0.6
+  punchScale: 1.35
+  punchRotationDeg: 8
+  floatingTextOffset: {x: 0, y: 40}
+  floatingTextRise: 40
+  floatingTextColor: {r: 1, g: 1, b: 1, a: 1}
+  screenShakeIntensity: 0.06
+  screenShakeDuration: 0.12
   QTETrigger: {fileID: -5213748008456147506, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   cymbal: {fileID: 8300000, guid: 7b890333801cab944bdbd952f601048c, type: 3}
-  follower: {fileID: 7153777541572823828, guid: 22d6e5176a1b49c498a62ecbb3cd500d, type: 3}
+  floatingTextPrefab: {fileID: 6713990792170143459, guid: 767790b0490c0a54abe81800fbeb9304, type: 3}
+  parentCanvas: {fileID: 0}

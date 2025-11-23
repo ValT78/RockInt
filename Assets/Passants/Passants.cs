@@ -35,6 +35,7 @@ public class Passants : MonoBehaviour
     float bobbingPhase = 0f;
     float yawPhase = 0f;
     int randomSeed;
+    public AudioClip ouch;
 
     void Reset()
     {
@@ -184,6 +185,8 @@ public class Passants : MonoBehaviour
         {
             // hit player
             GameManager.Instance.TakeDamage(damage);
+            SoundManager.Instance.PlaySFX(ouch, volume: 20f, pitch: Random.Range(0.9f, 1.1f));
+            SoundManager.Instance.SetSFXVolume(1000);
         }
     }
 }

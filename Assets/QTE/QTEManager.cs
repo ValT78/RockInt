@@ -27,7 +27,7 @@ public class QTEManager : MonoBehaviour
 
     private void SpawnTouch(int i)
     {
-        GameObject newUI = Instantiate(PickTouch(), new Vector3(1870, i*platformLenghtY+140, 0), Quaternion.identity, transform.Find("Line"));
+        GameObject newUI = Instantiate(PickTouch(), new Vector3(1870, i*platformLenghtY+40, 0), Quaternion.identity, transform.Find("Line"));
     }
 
     public void Checkmark(float y)

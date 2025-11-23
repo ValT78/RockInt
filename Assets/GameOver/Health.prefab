@@ -149,7 +149,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4282777829
   m_fontColor: {r: 0.8962264, g: 0, b: 0.2734331, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -228,16 +228,15 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6576204170163358082
-Transform:
+--- !u!224 &6576204170163358082
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8342882974180752502}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 840, y: 270, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 9.353074, y: 9.353075, z: 9.353075}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -245,6 +244,11 @@ Transform:
   - {fileID: 2555111514608125488}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 800, y: 350}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8139016907022519205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,3 +262,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
   healthText: {fileID: 5044602580742438663}
+  icon: {fileID: 0}
+  uiRoot: {fileID: 0}
+  mainCamera: {fileID: 0}
+  maxHealth: 5
+  currentHealth: 5
+  numberTweenDuration: 0.55
+  heartPunchScale: 1.35
+  heartPunchTime: 0.32
+  heartRotDeg: 8
+  heartFlashColor: {r: 1, g: 0.7, b: 0.7, a: 1}
+  textFlashColor: {r: 1, g: 0.9, b: 0.6, a: 1}
+  particleCount: 8
+  particleSpeed: {x: 80, y: 160}
+  particleLifetime: 0.6
+  particleSize: 18
+  shakeIntensity: 0.04
+  shakeDuration: 0.12
