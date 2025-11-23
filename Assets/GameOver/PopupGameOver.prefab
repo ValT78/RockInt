@@ -303,7 +303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameOver
   restartButton: {fileID: 659636426446269655}
-  gameOverPanel: {fileID: 0}
+  gameOverPanel: {fileID: 8430591695016442046}
 --- !u!1 &7030772605265722774
 GameObject:
   m_ObjectHideFlags: 0
