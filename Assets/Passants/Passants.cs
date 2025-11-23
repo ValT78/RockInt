@@ -180,9 +180,8 @@ public class Passants : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Player player = other.GetComponent<Player>();
-
-        if (player != null)
+        
+        if (other.TryGetComponent<Player>(out var _))
         {
             // hit player
             GameManager.Instance.TakeDamage(damage);
