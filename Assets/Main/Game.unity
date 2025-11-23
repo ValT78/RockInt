@@ -645,6 +645,14 @@ PrefabInstance:
       propertyPath: gameOverPanel
       value: 
       objectReference: {fileID: 1065594446}
+    - target: {fileID: 7842240880000711082, guid: c2a801983b686d241b0fd0d679be7f68, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7842240880000711082, guid: c2a801983b686d241b0fd0d679be7f68, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: 9ea3f9104f272a94898b2a82f81622e9, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
