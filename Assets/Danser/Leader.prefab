@@ -159,8 +159,8 @@ MonoBehaviour:
   rb: {fileID: 4115134346199445071}
   follower: {fileID: 0}
   animator: {fileID: 0}
-  moveSpeed: 1.5
-  detachedSpeedMultiplier: 3
+  moveSpeed: 4
+  detachedSpeedMultiplier: 2
   chargeMaxTime: 1.2
   minEjectDistance: 1.5
   maxEjectDistance: 5

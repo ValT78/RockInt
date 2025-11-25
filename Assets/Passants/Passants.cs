@@ -162,8 +162,8 @@ public class Passants : MonoBehaviour
         }
 
         // bounds check
-        if (transform.position.x < GameManager.minX || transform.position.x > GameManager.maxX ||
-            transform.position.z > GameManager.maxZ || transform.position.z < GameManager.minZ)
+        if (transform.position.x < GameManager.minX-1 || transform.position.x > GameManager.maxX+1 ||
+            transform.position.z > GameManager.maxZ+1 || transform.position.z < GameManager.minZ-1)
         {
             GameManager.Instance.RemovePassant(this);
             Destroy(gameObject, 0f);

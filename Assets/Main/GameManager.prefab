@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af0fb4762dca1c940af3211ff03c7a34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  gameOverPanel: {fileID: 2763596865378653431, guid: d47d61fc8177cd14aaf87d1ee1072e74, type: 3}
+  maxHP: 5
   passants: []
 --- !u!114 &6349214316879407008
 MonoBehaviour:
@@ -179,7 +179,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PassantsSpawner
   passantPrefab: {fileID: 6929641521859599203, guid: cfcacc189204f6d4b94a33967d10de16, type: 3}
   initialMaxPassants: 2
-  passantsGrowthPerSecond: 0.1
+  passantsGrowthPerSecond: 0.15
   cooldown: 1
   spawnRandomJitter: 0.3
-  spawnMarginY: 1
+  spawnMarginY: -1.2
